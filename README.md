@@ -1,5 +1,5 @@
-character-manager-js
-=======================
+Character Manager project
+==========================
 
 What's the purpose of this project 
 -----------------------------------
