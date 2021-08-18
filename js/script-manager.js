@@ -1,26 +1,25 @@
     // uplaod another/new picture for the character
-    let image ="";
-    function imageUploaded(){
-        let file= document.querySelector("input[type=file]")[`files`][0];
+    let image = "";
+    let imageUploaded = () => {
+        let file = document.querySelector("input[type=file]")[`files`][0];
         let reader = new FileReader();
         
-        reader.onload = function(){
+        reader.onload = () => {
             image = reader.result.replace("data:", "").replace(/^.+,/,"");
             document.getElementById("importid").src =  `data:image/jpeg;base64,${image}`;
         }
         reader.readAsDataURL(file);
-    }
-
+    };
 
 (async() => {
 
     //Fetch the API
-    const response = await fetch(`https://character-database.becode.xyz/characters`);
-    const character = await response.json()
+    let fetching = await fetch(`https://character-database.becode.xyz/characters`);
+    let characters = await fetching.json()
 
     //Get the ID of the character we want to change
     let queryString = location.search.substring(1)
-    let find = character.find(el => el.id === queryString)
+    let find = characters.find(el => el.id === queryString)
 
     //POST method : 
     //if we don't have an id for the character
@@ -113,9 +112,10 @@
             }      
         })
     };
-
-    //Delete button :
-    document.getElementById("delete").addEventListener("click", async () => {
+ 
+    //The delete button
+    let deleteBtn = document.getElementById('delete');
+    deleteBtn.addEventListener('click', async () => {
         if(confirm(`Do you want to delete it ?`)){
             await fetch(`https://character-database.becode.xyz/characters/${queryString}`, {
                 method: 'DELETE',
@@ -123,25 +123,25 @@
                     "Content-Type": "application/json",
                 },
             }); 
-            alert("votre personnage a bien été supprimé")
+            alert(`This character has been deleted`)
             window.location.href ="/index.html"
         }else{
-            alert(`This character isn't delete of your API`);
+            alert(`This character isn't delete`);
         }
-    }); 
+    });
 
     // Count of charcater for the Name 
-    const name = document.getElementById("manager__name");
-    const valueName = name.length;
-    const CounterName = document.getElementById("counter__name");
+    let name = document.getElementById("manager__name");
+    let valueName = name.length;
+    let CounterName = document.getElementById("counter__name");
     name.addEventListener("input", () => {
         CounterName.innerText = `${valueName} on max 20 char.`;
         console.log(`${valueName} on max 350 char`)
     });
 
     // Count of charcater for the Preface 
-    const preface = document.getElementById("manager__preface");
-    const valuePreface = preface.value;
+    let preface = document.getElementById("manager__preface");
+    let valuePreface = preface.value;
     let counterPreface = document.getElementById('counter__preface');
     preface.addEventListener("input", () => {
         counterPreface.innerText = `${valuePreface} on max 70 char.`;

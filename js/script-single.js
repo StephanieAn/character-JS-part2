@@ -1,34 +1,38 @@
 (async () => {
      
-    document.addEventListener('DOMContentLoaded',async function(){
+    document.addEventListener('DOMContentLoaded',async () => {
         //fetch the API
-        const response = await fetch(`https://character-database.becode.xyz/characters`);
-        const character = await response.json();
+        let fetching = await fetch(`https://character-database.becode.xyz/characters`);
+        let characters = await fetching.json();
 
         //got the ID from the URL
         let queryString = location.search.substring(1)
         // console.log(queryString)
 
-
         //display information from the character
-        character.forEach(obj => {
-            if (queryString === obj.id){
-                let img = document.querySelector("img");
-                img.src = `data:image/png;base64, ${obj.image}`;
-                document.getElementById("single__name").innerHTML = obj.name;
-                document.getElementById("single__preface").innerHTML = obj.shortDescription;
-                document.getElementById("single__text").innerHTML = obj.description;
-            }
+        let nameSingle = document.getElementById("single__name");
+        let prefaceSingle = document.getElementById("single__preface");
+        let textSingle = document.getElementById("single__text"); 
+        let imgSingle = document.querySelector("img");
 
+        characters.forEach(character => {
+            if (queryString === character.id){
+                imgSingle.src = `data:image/png;base64, ${character.image}`;
+                nameSingle.innerHTML = character.name;
+                prefaceSingle.innerHTML = character.shortDescription;
+                textSingle.innerHTML = character.description;
+            }
         });
 
         //update button
-        document.getElementById("update").addEventListener("click", () => {
+        let update = document.getElementById("update")
+        update.addEventListener("click", () => {
             window.location.href = `manager-character.html?${queryString}`;
         }); 
 
         //The delete button
-        document.getElementById("delete").addEventListener("click", async () => {
+        let deleteBtn = document.getElementById('delete');
+        deleteBtn.addEventListener('click', async () => {
             if(confirm(`Do you want to delete it ?`)){
                 await fetch(`https://character-database.becode.xyz/characters/${queryString}`, {
                     method: 'DELETE',
@@ -39,7 +43,7 @@
                 alert(`This character has been deleted`)
                 window.location.href ="/index.html"
             }else{
-                alert(`This character isn't delete of your API`);
+                alert(`This character isn't delete`);
             }
         }); 
     });
