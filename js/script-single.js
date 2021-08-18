@@ -24,7 +24,7 @@
 
         //update button
         document.getElementById("update").addEventListener("click", () => {
-            window.location.href = `pages/manager-character.html?${queryString}`;
+            window.location.href = `manager-character.html?${queryString}`;
         }); 
 
         //The delete button

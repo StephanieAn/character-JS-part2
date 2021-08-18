@@ -45,7 +45,7 @@
                         })  
                     }) 
                 alert(`Your character is added to the DB`);
-                window.location.href ="/character-manager-js/index.html"
+                window.location.href ="/index.html"
             }
             else{
                 alert(`This character isn't add to the DB`)
@@ -83,7 +83,7 @@
                         })
                     });
                     alert("Your character has been modified in the DB")
-                    window.location.href ="/character-manager-js/index.html"
+                    window.location.href ="/index.html"
                 }  
                 else{
                     alert("your character hasn't been modify!")
@@ -105,7 +105,7 @@
                         })
                     })
                     alert("Your character has been modified in the DB")
-                    window.location.href ="index.html"
+                    window.location.href ="/index.html"
                 }
                 else {
                     alert("your character hasn't been modify!")
@@ -124,7 +124,7 @@
                 },
             }); 
             alert("votre personnage a bien été supprimé")
-            window.location.href ="index.html"
+            window.location.href ="/index.html"
         }else{
             alert(`This character isn't delete of your API`);
         }
