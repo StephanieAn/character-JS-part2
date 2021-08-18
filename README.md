@@ -41,4 +41,4 @@ We've worked together:
 
 The link to our page :
 -----------------------
-[Click here to see our WebSite](https://doxh23.github.io/character-manager-js/)
+[Click here to see our WebSite](https://stephaniean.github.io/character-JS-part2/)

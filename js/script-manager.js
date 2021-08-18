@@ -105,7 +105,7 @@
                         })
                     })
                     alert("Your character has been modified in the DB")
-                    window.location.href ="/character-manager-js/index.html"
+                    window.location.href ="index.html"
                 }
                 else {
                     alert("your character hasn't been modify!")
@@ -132,10 +132,11 @@
 
     // Count of charcater for the Name 
     const name = document.getElementById("manager__name");
-    const valueName = name.value;
+    const valueName = name.length;
     const CounterName = document.getElementById("counter__name");
     name.addEventListener("input", () => {
         CounterName.innerText = `${valueName} on max 20 char.`;
+        console.log(`${valueName} on max 350 char`)
     });
 
     // Count of charcater for the Preface 
