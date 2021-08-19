@@ -26,8 +26,8 @@
 
     //SEARCH BAR
     let bar = document.getElementById('search-bar');
-    let i = '47'
-    let searchName = characters[i].name;
+    // let i = '47'
+    let searchName = characters[name];
     console.log(searchName)
     
     bar.addEventListener('input', () => {

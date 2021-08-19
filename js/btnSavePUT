@@ -1,0 +1,64 @@
+(async() => {   
+          
+    //PUT method :
+    //if we got an id for the character
+    if (queryString === find.id){
+        let img = document.querySelector("img");
+        img.src = `data:image/png;base64, ${find.image}`;
+        document.getElementById("manager__name").value = find.name;
+        document.getElementById("manager__preface").value = find.shortDescription;
+        document.querySelector("#manager__text").children[0].innerHTML = find.description;
+        // console.log(document.querySelector("p").value)
+            
+        document.getElementById("update").addEventListener("click", async () => {
+            let name = document.getElementById("manager__name").value
+            let shortDescription = document.getElementById("manager__preface").value
+            let description = document.getElementById("manager__text").children[0].innerHTML
+                
+            //if we don't have an image
+            if (image.length ===  0){
+                if(confirm(`Do you want to change this character ?`)){
+                    await fetch(`https://character-database.becode.xyz/characters/${queryString}`, {
+                        method: 'PUT',
+                        headers: {
+                            "Content-Type": "application/json", },
+                        body: JSON.stringify({
+                            name,
+                            description,
+                            shortDescription,                   
+                            image : `${find.image}`
+                        })
+                    });
+                    alert("Your character has been modified in the DB")
+                    window.location.href ="/index.html"
+                }  
+                else{
+                    alert("your character hasn't been modify!")
+                }
+            }
+
+            //if we have an image
+            else {
+                if(confirm(`Do you want to change this character ?`)){
+                    await fetch(`https://character-database.becode.xyz/characters/${queryString}`, {
+                        method: 'PUT',
+                        headers: {
+                            "Content-Type": "application/json", },
+                        body: JSON.stringify({
+                            name,
+                            description,
+                            shortDescription,                   
+                            image
+                        })
+                    })
+                    alert("Your character has been modified in the DB")
+                    window.location.href ="/index.html"
+                }
+                else {
+                    alert("your character hasn't been modify!")
+                }
+            }      
+        })
+    };
+
+})()
