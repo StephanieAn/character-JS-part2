@@ -1,3 +1,6 @@
+    import {fecthChar} from './fetch.js'
+    import {btnDel} from './btnDelete.js'
+
     // uplaod another/new picture for the character
     let image = "";
     let imageUploaded = () => {
@@ -14,8 +17,7 @@
 (async() => {
 
     //Fetch the API
-    let fetching = await fetch(`https://character-database.becode.xyz/characters`);
-    let characters = await fetching.json()
+    let characters = await fecthChar();
 
     //Get the ID of the character we want to change
     let queryString = location.search.substring(1)
@@ -114,21 +116,7 @@
     };
  
     //The delete button
-    let deleteBtn = document.getElementById('delete');
-    deleteBtn.addEventListener('click', async () => {
-        if(confirm(`Do you want to delete it ?`)){
-            await fetch(`https://character-database.becode.xyz/characters/${queryString}`, {
-                method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }); 
-            alert(`This character has been deleted`)
-            window.location.href ="/index.html"
-        }else{
-            alert(`This character isn't delete`);
-        }
-    });
+    btnDel();
 
     // Count of charcater for the Name 
     let name = document.getElementById("manager__name");
